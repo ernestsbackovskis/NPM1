@@ -12,12 +12,15 @@ runs:
       with:
         repository: mtararujs/python-greetings
         path: app-${{ inputs.env_name }}
+    
     - name: Stop existing service
       shell: powershell
       run: pm2 delete greetings-app-${{ inputs.env_name }} ; $global:LASTEXITCODE = 0
+    
     - name: Start service with PM2
       shell: powershell
       working-directory: ./app-${{ inputs.env_name }}
       run: |
         echo "Deploying to ${{ inputs.env_name }} on port ${{ inputs.port }}"
-        pm2 start main.py --name greetings-app-${{ inputs.env_name }} -- --port ${{ inputs.port }}
+        # Šeit pārliecinies, ka 'main.py' ir īstais faila nosaukums no README!
+        cmd /c "pm2 start main.py --name greetings-app-${{ inputs.env_name }} -- --port ${{ inputs.port }}"
