@@ -22,5 +22,4 @@ runs:
       working-directory: ./app-${{ inputs.env_name }}
       run: |
         echo "Deploying to ${{ inputs.env_name }} on port ${{ inputs.port }}"
-        # Šeit pārliecinies, ka 'main.py' ir īstais faila nosaukums no README!
-        cmd /c "pm2 start main.py --name greetings-app-${{ inputs.env_name }} -- --port ${{ inputs.port }}"
+        cmd /c "pm2 start app.py --name greetings-app-${{ inputs.env_name }} --interpreter ..\python-app\venv\Scripts\python.exe -- --port ${{ inputs.port }}"
