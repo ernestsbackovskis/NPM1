@@ -8,7 +8,7 @@ runs:
         repository: mtararujs/python-greetings
         path: python-app
     - name: Install Python deps
-      shell: pwsh
+      shell: powershell
       working-directory: ./python-app
       run: |
         echo "Installing all required dependencies.."

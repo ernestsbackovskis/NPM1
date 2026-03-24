@@ -13,12 +13,11 @@ runs:
         repository: mtararujs/python-greetings
         path: app-${{ inputs.env_name }}
     - name: Stop existing service
-      shell: pwsh
+      shell: powershell
       run: pm2 delete greetings-app-${{ inputs.env_name }} ; $global:LASTEXITCODE = 0
     - name: Start service with PM2
-      shell: pwsh
+      shell: powershell
       working-directory: ./app-${{ inputs.env_name }}
       run: |
         echo "Deploying to ${{ inputs.env_name }} on port ${{ inputs.port }}"
-        # Piezīme: Pielāgo main.py palaišanu, ja nepieciešams, atbilstoši README
         pm2 start main.py --name greetings-app-${{ inputs.env_name }} -- --port ${{ inputs.port }}

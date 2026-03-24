@@ -11,7 +11,7 @@ runs:
         repository: mtararujs/course-js-api-framework
         path: tests-${{ inputs.env_name }}
     - name: Install and Run Tests
-      shell: pwsh
+      shell: powershell
       working-directory: ./tests-${{ inputs.env_name }}
       run: |
         echo "Starting tests for ${{ inputs.env_name }}"
