@@ -1,0 +1,19 @@
+name: 'Run API Tests'
+inputs:
+  env_name:
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout test framework
+      uses: actions/checkout@v4
+      with:
+        repository: mtararujs/course-js-api-framework
+        path: tests-${{ inputs.env_name }}
+    - name: Install and Run Tests
+      shell: pwsh
+      working-directory: ./tests-${{ inputs.env_name }}
+      run: |
+        echo "Starting tests for ${{ inputs.env_name }}"
+        npm install
+        npm run greetings greetings_${{ inputs.env_name }}

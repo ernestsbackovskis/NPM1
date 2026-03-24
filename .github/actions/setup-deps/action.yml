@@ -1,0 +1,16 @@
+name: 'Setup Dependencies'
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout app code
+      uses: actions/checkout@v4
+      with:
+        repository: mtararujs/python-greetings
+        path: python-app
+    - name: Install Python deps
+      shell: pwsh
+      working-directory: ./python-app
+      run: |
+        echo "Installing all required dependencies.."
+        python -m venv venv
+        .\venv\Scripts\python -m pip install -r requirements.txt

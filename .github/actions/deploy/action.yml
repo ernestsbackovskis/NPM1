@@ -1,0 +1,24 @@
+name: 'Deploy Environment'
+inputs:
+  env_name:
+    required: true
+  port:
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout app code
+      uses: actions/checkout@v4
+      with:
+        repository: mtararujs/python-greetings
+        path: app-${{ inputs.env_name }}
+    - name: Stop existing service
+      shell: pwsh
+      run: pm2 delete greetings-app-${{ inputs.env_name }} ; $global:LASTEXITCODE = 0
+    - name: Start service with PM2
+      shell: pwsh
+      working-directory: ./app-${{ inputs.env_name }}
+      run: |
+        echo "Deploying to ${{ inputs.env_name }} on port ${{ inputs.port }}"
+        # Piezīme: Pielāgo main.py palaišanu, ja nepieciešams, atbilstoši README
+        pm2 start main.py --name greetings-app-${{ inputs.env_name }} -- --port ${{ inputs.port }}
