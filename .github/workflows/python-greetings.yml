@@ -13,6 +13,8 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: ./.github/actions/deploy
         with:
           env_name: 'dev'
@@ -23,6 +25,8 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: ./.github/actions/run-tests
         with:
           env_name: 'dev'
@@ -32,6 +36,8 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: ./.github/actions/deploy
         with:
           env_name: 'stg'
@@ -42,6 +48,8 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: ./.github/actions/run-tests
         with:
           env_name: 'stg'
@@ -51,6 +59,8 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: ./.github/actions/deploy
         with:
           env_name: 'preprod'
@@ -61,6 +71,8 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: ./.github/actions/run-tests
         with:
           env_name: 'preprod'
@@ -70,6 +82,8 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: ./.github/actions/deploy
         with:
           env_name: 'prod'
@@ -80,6 +94,8 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
+        with:
+          clean: false
       - uses: ./.github/actions/run-tests
         with:
           env_name: 'prod'
